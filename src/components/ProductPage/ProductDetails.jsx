@@ -3,22 +3,17 @@ import styles from './ProductDeatils.module.css'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { store } from '../../Redux/store';
 import { addToCart } from '../CartPage/redux/action';
 import { baseUrl } from '../../../configs';
 const ProductDetails = () => {
   const [data, setData] = useState([]);
   const { type, id } = useParams();
   const value = useParams();
-  console.log(value)
-  const { productType } = useSelector((store) => { return store.ProductReducer });
-  const { detailObjId } = useSelector((store) => { return store.ProductDetailReducer })
   const dispatch = useDispatch()
   const fetching = () => {
     console.log(baseUrl + `/products/${id}`)
     const res = axios.get(baseUrl + `/products/${id}`)
       .then((res) => { setData(res.data) })
-
   }
 
   useEffect(() => { fetching() }, [id])
@@ -32,12 +27,9 @@ const ProductDetails = () => {
             </div>
             <div className={styles.leftDown}>
               <div>
-
-
                 <img src={data.url1} />
               </div>
               <div>
-
                 <img src={data.url2} />
               </div>
             </div>

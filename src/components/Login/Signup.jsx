@@ -5,14 +5,10 @@ import passwordIcon from './Assets/password.png';
 import google from "./Assets/google.jpg"
 import facebook from "./Assets/facebook.png"
 import { Navigate, useNavigate } from 'react-router';
-import { auth } from './firebase';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogin } from './redux/action';
 import axios from 'axios';
 import { baseUrl } from '../../../configs';
-// import { firebase } from './firebase';
+
 
 
 const Signup = ({ isLoginSelected, setIsLoginSelected }) => {
