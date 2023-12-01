@@ -5,11 +5,7 @@ import Section2 from '../components/HomePage/Section2'
 import PhotoGallary from '../components/HomePage/PhotoGallary'
 import Team from '../components/HomePage/Team'
 import ContactsUs from '../components/HomePage/ContactsUs'
-import { useSelector } from 'react-redux'
 import BuyersChoice from '../components/HomePage/BuyersChoice'
-
-
-
 
 const Homepage = () => {
     return (
@@ -22,7 +18,6 @@ const Homepage = () => {
             <Team />
             <ContactsUs />
         </div>
-
     )
 }
 

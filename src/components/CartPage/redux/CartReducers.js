@@ -1,4 +1,7 @@
+import { postData } from "./action";
+
 const intialState = [];
+
 const CartReducer = (state = intialState, { type, payload }) => {
   switch (type) {
     case "add": {
@@ -14,6 +17,7 @@ const CartReducer = (state = intialState, { type, payload }) => {
       if (check) {
         return map;
       } else {
+        postData({ cart: [...state, ...payload] });
         return [...state, ...payload];
       }
     }
@@ -21,6 +25,7 @@ const CartReducer = (state = intialState, { type, payload }) => {
       let fil = state.filter((ele) => {
         return ele.title != payload;
       });
+      postData({ cart: fil });
       return fil;
     }
     case "increase": {
@@ -31,6 +36,7 @@ const CartReducer = (state = intialState, { type, payload }) => {
           return ele;
         }
       });
+      postData({ cart: map });
       return map;
     }
     case "decrease": {
@@ -41,9 +47,14 @@ const CartReducer = (state = intialState, { type, payload }) => {
           return ele;
         }
       });
+      postData({ cart: map });
       return map;
     }
+    case "cartload": {
+      return payload;
+    }
     case "cleanCart": {
+      postData({ cart: [] });
       return [];
     }
 

@@ -3,11 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./productContainer.module.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToCart } from './ProductReducer/action';
 import { addToCart } from '../CartPage/redux/action';
 import load from "./loading.gif"
 import { baseUrl } from '../../../configs';
-
 
 const ProductContainer = () => {
   const [data, setData] = useState([]);

@@ -15,7 +15,7 @@ const BuyersChoice = () => {
         try {
             const res = await axios(`https://crudoperations-b7d45-default-rtdb.firebaseio.com/${type}.json`)
             const gotdata = res.data;
-            console.log(res.data)
+            // console.log(res.data)
             let arr = [];
             for (let i = 0; i < gotdata.length; i++) {
                 if (i < 4) {
@@ -32,7 +32,7 @@ const BuyersChoice = () => {
     useEffect(() => {
         getData(type)
     }, [type])
-    console.log(data);
+    // console.log(data);
     return (
         <div className={style.BuyersChoice}>
             <div>
