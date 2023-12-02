@@ -2,14 +2,27 @@ import { useSelector } from "react-redux";
 import "../CartPage/Cart.css";
 import CartElement from "./CartElement/CartElement";
 import PriceDetail from "./PriceDetails/PriceDetail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
 
   const isAuth = useSelector((store) => store.AuthReducer.isAuth)
-  // console.log(isAuth) 
   const data = useSelector((store) => store.CartReducer)
+
+
+
+  useEffect(()=>{
+    try {
+      
+    } catch (error) {
+      
+    }
+  },[])
+
+
+
+
   const navigate = useNavigate();
   //============>
   let details = data.reduce((acc, e) => {

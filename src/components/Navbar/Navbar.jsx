@@ -23,7 +23,6 @@ const Navbar = () => {
     const [dropDownSearch, setDropDownSearch] = useState(false)
     const isAuth = useSelector((store) => store.AuthReducer.isAuth);
     const userName = useSelector((store) => store.AuthReducer.name);
-    // const [insideOpen, setInsideOpen] = useState(false);
     const prev = useRef()
 
     const handleProductType = (productType) => {

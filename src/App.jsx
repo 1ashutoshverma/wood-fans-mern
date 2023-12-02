@@ -17,6 +17,7 @@ function App() {
   const cart = useSelector((store) => store.CartReducer);
   const dispatch = useDispatch();
   console.log(cart)
+  
   useEffect(() => {
     dispatch(getData(baseUrl + "/cart", token))
   }, [isAuth])

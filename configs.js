@@ -1,1 +1,1 @@
-export const baseUrl = "https://real-ruby-caridea-tux.cyclic.app";
+export const baseUrl = "https://wood-fans-backend.vercel.app";
