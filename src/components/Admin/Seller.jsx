@@ -66,7 +66,7 @@ const Seller = () => {
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(res)
+            // console.log(res)
             setProductsData(res.data)
         } catch (error) {
             console.log(error)
@@ -83,8 +83,8 @@ const Seller = () => {
             })
             // console.log(res)
             alert(res.data.message)
-            setProduct(initialData)
             getProductsData()
+            setProduct(initialData)
         } catch (error) {
             alert("Something Went Wrong")
             console.log(error)
@@ -100,6 +100,7 @@ const Seller = () => {
             })
             alert(res.data.message)
             getProductsData()
+
         } catch (error) {
             console.log(error)
         }
@@ -114,6 +115,7 @@ const Seller = () => {
             })
             alert(res.data.message)
             getProductsData()
+            setProduct(initialData)
         } catch (error) {
             console.log(error)
         }

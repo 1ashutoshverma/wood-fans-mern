@@ -109,6 +109,7 @@ const Admin = () => {
             })
             alert(res.data.message)
             getUserData()
+            setUser(initialData)
         } catch (error) {
             console.log(error)
         }
