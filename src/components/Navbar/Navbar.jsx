@@ -15,7 +15,8 @@ import { AddProductType } from '../ProductPage/ProductReducer/action'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogout } from '../Login/redux/action'
-import SearchData from './SearchData'
+import axios from 'axios'
+import { baseUrl } from '../../../configs'
 
 const Navbar = () => {
     const [clickedHumburger, setClickedHumburger] = useState(false)
@@ -24,7 +25,7 @@ const Navbar = () => {
     const isAuth = useSelector((store) => store.AuthReducer.isAuth);
     const role = useSelector((store) => store.AuthReducer.role);
     const userName = useSelector((store) => store.AuthReducer.name);
-    const prev = useRef()
+    const prev = useRef("")
 
     const handleProductType = (productType) => {
         AddProductType(dispatch, productType);
@@ -33,7 +34,7 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const [searchResults, setsearchResults] = useState("");
     const [close, setClose] = useState(false)
-    const debounce = useRef();
+    const debounce = useRef("");
     const [searchedData, setSearchedData] = useState([])
     const navigate = useNavigate();
 
@@ -43,12 +44,13 @@ const Navbar = () => {
     let details = data.reduce((acc, e) => {
         return { ...acc, qty: acc.qty + e.qty }
     }, { qty: 0 })
+
     //=====================>>
-    useEffect(() => {
-        clearTimeout(debounce.current);
-        debounce.current = setTimeout(() => {
-            const data = SearchData(searchResults)
-            // console.log(data)
+    const search = async (key) => {
+        try {
+            const res = await axios.get(baseUrl + `/products?title=${key}`);
+            // console.log(res);
+            const data = res.data
             let arr = []
             for (let i = 1; i <= data.length; i++) {
                 if (i <= 3) {
@@ -56,8 +58,17 @@ const Navbar = () => {
                 }
             }
             setSearchedData(arr)
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        clearTimeout(debounce.current);
+        debounce.current = setTimeout(() => {
+            search(searchResults)
             setClose(true)
-        }, 500);
+        }, 700);
     }, [searchResults])
 
 
@@ -81,12 +92,14 @@ const Navbar = () => {
                             <div className={style.search_icon}>
                                 <input type="text" placeholder='Search Items...' value={prev.current} onChange={(e) => { prev.current = e.target.value; setsearchResults(e.target.value); }} />
                                 <img src={search} alt="" />
+
+                                {/* productdetails/${productType}/${ele._id} */}
                                 {
                                     searchResults.length > 0 ? (<div className={style.searchDropdown}>
                                         {
                                             searchedData.length ? (searchedData.map((e) => {
                                                 return (
-                                                    <div key={e.id} onClick={() => { navigate(`/product/productdetails/${e.t}/${e.id}`); setsearchResults("") }}>{e.title}</div>
+                                                    <div key={e.id} onClick={() => { navigate(`/product/productdetails/${e.type}/${e._id}`); setsearchResults("") }}>{e.title}</div>
                                                 )
                                             })) : (<div>No Results...</div>)
                                         }
