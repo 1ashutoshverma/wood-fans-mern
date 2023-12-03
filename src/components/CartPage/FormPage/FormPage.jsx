@@ -214,10 +214,6 @@ function FormPage() {
                         <span className="color-red">*&nbsp;</span>Pincode
                       </label>
                       <input type="text" id="pincode" style={{ height: "21px" }} required value={pincode} onChange={(e) => { setPincode(e.target.value) }} />
-                      {/* <select type="text" id="pincode" >
-                        <option value="">21345</option>
-                        <option value="248145">248145</option>
-                      </select> */}
                     </div>
                   </div>
                 </form>
@@ -230,7 +226,6 @@ function FormPage() {
           </div>
         </div>
       )}
-      {/* <button onClick={handlePayment}>Click</button> */}
     </div>
   );
 }

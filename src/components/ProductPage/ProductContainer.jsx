@@ -13,7 +13,7 @@ const ProductContainer = () => {
   const dispatch = useDispatch();
 
   const { productType } = useSelector((store) => { return store.ProductReducer });
-  console.log(productType)
+  // console.log(productType)
 
   const fetching = async () => {
     setLoading(true);

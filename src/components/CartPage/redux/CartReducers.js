@@ -15,6 +15,7 @@ const CartReducer = (state = intialState, { type, payload }) => {
         }
       });
       if (check) {
+        postData({ cart: map });
         return map;
       } else {
         postData({ cart: [...state, ...payload] });

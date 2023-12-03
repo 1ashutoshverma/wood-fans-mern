@@ -20,10 +20,12 @@ const Signup = ({ isLoginSelected, setIsLoginSelected }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const isAuth = useSelector((store) => store.AuthReducer.isAuth)
 
   const handleSubmit = async (e) => {
@@ -36,7 +38,8 @@ const Signup = ({ isLoginSelected, setIsLoginSelected }) => {
     try {
       const res = await axios.post(baseUrl + "/user/signup", user)
       // console.log(res)
-      dispatch({ type: "login", payload: { name: res.data.name, token: res.data.token } })
+
+      dispatch({ type: "login", payload: { name: res.data.name, token: res.data.token, role: res.data.role } })
       navigate("/")
     } catch (error) {
       console.log(error)
@@ -51,12 +54,6 @@ const Signup = ({ isLoginSelected, setIsLoginSelected }) => {
 
 
   const handleGoogleSignIn = async () => {
-    // try {
-    //   const res = await axios.get(baseUrl + "/user/google")
-    //   console.log(res)
-    // } catch (error) {
-    //   console.log(error)
-    // };
   }
 
   const handleToggleForm = () => {
