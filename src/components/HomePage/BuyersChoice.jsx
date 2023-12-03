@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../CartPage/redux/action';
 import { AddDetailsObj } from '../ProductPage/Redux/ProductDetailReducer/action';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../../configs';
 
 const BuyersChoice = () => {
     const [type, setType] = useState("Sofas");
@@ -13,9 +14,9 @@ const BuyersChoice = () => {
     const navigate = useNavigate();
     const getData = async (type) => {
         try {
-            const res = await axios(`https://crudoperations-b7d45-default-rtdb.firebaseio.com/${type}.json`)
+            const res = await axios(baseUrl + `/products/?type=${type}`)
             const gotdata = res.data;
-            // console.log(res.data)
+            console.log(res.data)
             let arr = [];
             for (let i = 0; i < gotdata.length; i++) {
                 if (i < 4) {
@@ -40,9 +41,9 @@ const BuyersChoice = () => {
                 <div className={style.linkProvider}>
                     <div>
                         <p id={type == "Sofas" ? style.selectedEffect : ""} onClick={() => { setType("Sofas") }}>SOFAS</p>
-                        <p id={type == "Beds" ? style.selectedEffect : ""} onClick={() => { setType("Beds") }}>BEDS</p>
-                        <p id={type == "ChildrenFurniture" ? style.selectedEffect : ""} onClick={() => { setType("ChildrenFurniture") }}>CHILDREN FURNITURE</p>
-                        <p id={type == "ArmChair" ? style.selectedEffect : ""} onClick={() => { setType("ArmChair") }}>ARMCHAIRS AND POUFS</p>
+                        <p id={type == "BEDS" ? style.selectedEffect : ""} onClick={() => { setType("BEDS") }}>BEDS</p>
+                        <p id={type == "Children's furniture" ? style.selectedEffect : ""} onClick={() => { setType("Children's furniture") }}>CHILDREN FURNITURE</p>
+                        <p id={type == "Armchairs" ? style.selectedEffect : ""} onClick={() => { setType("Armchairs") }}>ARMCHAIRS AND POUFS</p>
                     </div>
                     <div>
                         <h2>GO TO CATALOG</h2>
@@ -52,12 +53,12 @@ const BuyersChoice = () => {
                     {
                         data.map((e) => {
                             return (
-                                <div key={e.id}>
+                                <div key={e._id}>
                                     <img src={e.image} alt="" />
                                     <p> from ₹{e.price} </p>
                                     <h3 >{e.title}</h3>
                                     <div>
-                                        <h4 onClick={() => { AddDetailsObj(dispatch, e.id); navigate(`/product/productdetails/${type}/${e.id}`) }}>Details</h4>
+                                        <h4 onClick={() => { AddDetailsObj(dispatch, e._id); navigate(`/product/productdetails/${type}/${e._id}`) }}>Details</h4>
                                         <button onClick={() => { dispatch(addToCart([{ ...e, qty: 1 }])) }}>Buy Now</button>
                                     </div>
                                 </div>

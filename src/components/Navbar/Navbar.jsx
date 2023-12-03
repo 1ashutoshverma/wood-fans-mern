@@ -22,6 +22,7 @@ const Navbar = () => {
     const [dropDownLogin, setDropDownLogin] = useState(false)
     const [dropDownSearch, setDropDownSearch] = useState(false)
     const isAuth = useSelector((store) => store.AuthReducer.isAuth);
+    const role = useSelector((store) => store.AuthReducer.role);
     const userName = useSelector((store) => store.AuthReducer.name);
     const prev = useRef()
 
@@ -98,6 +99,12 @@ const Navbar = () => {
                                         dropDownLogin ? (<div className={style.logindropdown}>
                                             <div onClick={() => { navigate("/"); setDropDownLogin(false) }}>{userName}</div>
                                             <div onClick={() => { navigate("/cart"); setDropDownLogin(false) }}>My Cart</div>
+                                            {
+                                                role == "admin" ? (<div onClick={() => { navigate("/admin"); setDropDownLogin(false) }}>Admin Page</div>) : (<></>)
+                                            }
+                                            {
+                                                role == "seller" ? (<div onClick={() => { navigate("/seller"); setDropDownLogin(false) }}>Seller Terminal</div>) : (<></>)
+                                            }
                                             <div onClick={() => { dispatch(userLogout()); setDropDownLogin(false) }}>Logout</div>
                                         </div>) : (<></>)
                                     }

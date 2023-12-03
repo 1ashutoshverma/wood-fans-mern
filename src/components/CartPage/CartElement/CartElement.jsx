@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import "./CartElement.css";
-import { useState } from "react";
 import { decreaseQty, increaseQty, removeFromCart } from "../redux/action";
 const CartElement = ({ name, seller, image, price, discount, quantity }) => {
   console.log(name, seller, image, price, discount);

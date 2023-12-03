@@ -38,8 +38,8 @@ const Signup = ({ isLoginSelected, setIsLoginSelected }) => {
     try {
       const res = await axios.post(baseUrl + "/user/signup", user)
       // console.log(res)
-      
-      dispatch({ type: "login", payload: { name: res.data.name, token: res.data.token } })
+
+      dispatch({ type: "login", payload: { name: res.data.name, token: res.data.token, role: res.data.role } })
       navigate("/")
     } catch (error) {
       console.log(error)

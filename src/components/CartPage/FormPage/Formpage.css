@@ -1,19 +1,12 @@
 .wrapperDivFormPage {
-  /* border: 11px solid red; */
   padding-top: 130px;
   max-width: 1280px;
-  /* margin-left: 60px; */
   margin: auto;
 }
 
 .color-666666 {
   padding-bottom: 10px;
 }
-
-/* .paymentContainer {
-  width: 60%;
-  margin-left: 2%;
-} */
 
 .thankyouMsg {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;

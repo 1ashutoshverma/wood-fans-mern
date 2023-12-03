@@ -2,6 +2,7 @@ const intialState = JSON.parse(localStorage.getItem("userDetails")) || {
   name: "",
   token: "",
   isAuth: false,
+  role: "",
 };
 
 const AuthReducer = (state = intialState, { type, payload }) => {
@@ -13,6 +14,7 @@ const AuthReducer = (state = intialState, { type, payload }) => {
           isAuth: true,
           name: payload.name,
           token: payload.token,
+          role: payload.role,
         })
       );
 
@@ -21,6 +23,7 @@ const AuthReducer = (state = intialState, { type, payload }) => {
         isAuth: true,
         name: payload.name,
         token: payload.token,
+        role: payload.role,
       };
     }
 
@@ -31,6 +34,7 @@ const AuthReducer = (state = intialState, { type, payload }) => {
           isAuth: false,
           name: "",
           token: "",
+          role: "",
         })
       );
 
@@ -39,6 +43,7 @@ const AuthReducer = (state = intialState, { type, payload }) => {
         isAuth: false,
         name: "",
         token: "",
+        role: "",
       };
     }
 
