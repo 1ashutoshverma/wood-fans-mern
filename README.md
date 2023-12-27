@@ -47,6 +47,7 @@ Screenshots of the Home page on different devices are given below.
 - Home Page
 <div>
 <img src="./public/screenshots/homepage.png"/>
+  
 </div>
 
 - [Login](./public/screenshots/login.png)
